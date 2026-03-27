@@ -1,15 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-highlight: rgba(255, 255, 255, 0.18);
-  --neon-positive: #34d399;
-  --neon-negative: #f87171;
-  --neon-primary: #60a5fa;
-  --neon-compare: #fbbf24;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @theme inline {
@@ -19,60 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: linear-gradient(135deg, #0f172a 0%, #0d1f3c 40%, #0a1628 70%, #111827 100%);
-  background-attachment: fixed;
-  color: #f1f5f9;
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
-@layer utilities {
-  .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    box-shadow:
-      0 4px 24px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 var(--glass-highlight);
-  }
-
-  .glass-input {
-    background: rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--glass-border);
-    color: #f1f5f9;
-  }
-
-  .glass-input::placeholder {
-    color: #64748b;
-  }
-
-  .glass-input option {
-    background: #0f172a;
-    color: #f1f5f9;
-  }
-
-  .glass-button {
-    background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--glass-border);
-    color: #e2e8f0;
-    transition: all 0.2s;
-  }
-
-  .glass-button:hover {
-    background: var(--glass-highlight);
-    box-shadow: 0 0 16px rgba(96, 165, 250, 0.25);
-  }
-
-  .glass-button-active {
-    background: rgba(96, 165, 250, 0.2);
-    border-color: rgba(96, 165, 250, 0.5);
-    color: #93c5fd;
-    box-shadow: 0 0 12px rgba(96, 165, 250, 0.3);
-  }
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }

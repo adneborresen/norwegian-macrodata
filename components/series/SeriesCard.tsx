@@ -23,20 +23,20 @@ export function SeriesCard({ series }: { series: SeriesItem }) {
   return (
     <a
       href={`/series/${series.id}`}
-      className="glass-panel flex flex-col gap-2 rounded-xl p-4 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+      className="flex flex-col gap-2 rounded-xl border border-zinc-200 bg-white p-4 transition-shadow hover:shadow-md"
     >
       <div className="flex items-start justify-between gap-2">
-        <p className="text-sm font-semibold text-slate-100">{series.label}</p>
-        <span className="shrink-0 rounded-full border border-white/15 bg-white/10 px-2 py-0.5 text-xs font-medium capitalize text-slate-300">
+        <p className="text-sm font-semibold text-zinc-900">{series.label}</p>
+        <span className="shrink-0 rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium capitalize text-zinc-600">
           {series.category}
         </span>
       </div>
-      <p className="text-xs text-slate-500">{series.unit}</p>
+      <p className="text-xs text-zinc-500">{series.unit}</p>
       <div className="mt-auto flex items-center justify-between pt-1">
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-zinc-400">
           {FREQ_LABELS[series.frequency] ?? series.frequency}
         </span>
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-zinc-400">
           {SOURCE_LABELS[series.source] ?? series.source}
         </span>
       </div>

@@ -41,10 +41,10 @@ interface Props {
 export function TimeSeriesChart({
   data,
   unit,
-  color = '#60a5fa',
+  color = '#3b82f6',
   compareData,
   compareLabel,
-  compareColor = '#fbbf24',
+  compareColor = '#f59e0b',
 }: Props) {
   const merged = mergeData(data, compareData)
   const hasCompare = compareData !== undefined
@@ -52,31 +52,23 @@ export function TimeSeriesChart({
   return (
     <ResponsiveContainer width="100%" height={320}>
       <LineChart data={merged} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
         <XAxis
           dataKey="date"
-          tick={{ fontSize: 11, fill: '#94a3b8' }}
+          tick={{ fontSize: 11, fill: '#6b7280' }}
           tickLine={false}
           axisLine={false}
           interval="preserveStartEnd"
         />
         <YAxis
-          tick={{ fontSize: 11, fill: '#94a3b8' }}
+          tick={{ fontSize: 11, fill: '#6b7280' }}
           tickLine={false}
           axisLine={false}
           width={52}
           tickFormatter={(v: number) => (unit?.includes('%') ? `${v}%` : String(v))}
         />
         <Tooltip
-          contentStyle={{
-            fontSize: 12,
-            borderRadius: 12,
-            border: '1px solid rgba(255,255,255,0.12)',
-            background: 'rgba(15,23,42,0.85)',
-            backdropFilter: 'blur(12px)',
-            color: '#f1f5f9',
-          }}
-          labelStyle={{ color: '#94a3b8' }}
+          contentStyle={{ fontSize: 12, borderRadius: 6, border: '1px solid #e5e7eb' }}
           formatter={(value: number | string | readonly (string | number)[] | undefined) => [
             typeof value === 'number' ? value.toFixed(2) : '—',
             unit ?? '',

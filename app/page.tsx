@@ -33,16 +33,16 @@ export default async function DashboardPage() {
   const nav = await getTranslations('nav')
 
   return (
-    <div className="min-h-screen">
-      <header className="glass-panel sticky top-0 z-10">
+    <div className="min-h-screen bg-zinc-50">
+      <header className="sticky top-0 z-10 border-b border-zinc-200/50 bg-white/70 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-slate-100">{t('title')}</h1>
-              <p className="mt-1 text-sm text-slate-400">{t('subtitle')}</p>
+              <h1 className="text-2xl font-bold tracking-tight text-zinc-900">{t('title')}</h1>
+              <p className="mt-1 text-sm text-zinc-500">{t('subtitle')}</p>
             </div>
             <div className="flex items-center gap-3">
-              <a href="/series" className="text-sm font-medium text-blue-400 hover:text-blue-300">
+              <a href="/series" className="text-sm font-medium text-blue-600 hover:text-blue-800">
                 {nav('allSeries')}
               </a>
               <LanguageToggle locale={locale} />

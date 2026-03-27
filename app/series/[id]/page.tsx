@@ -45,20 +45,20 @@ export default async function SeriesDetailPage({
   }))
 
   return (
-    <div className="min-h-screen">
-      <header className="glass-panel sticky top-0 z-10">
+    <div className="min-h-screen bg-zinc-50">
+      <header className="sticky top-0 z-10 border-b border-zinc-200/50 bg-white/70 backdrop-blur-md">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <a href="/series" className="text-sm text-slate-400 hover:text-slate-200">
+            <a href="/series" className="text-sm text-zinc-400 hover:text-zinc-600">
               {nav('backToAllSeries')}
             </a>
             <LanguageToggle locale={locale} />
           </div>
-          <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-100">
+          <h1 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900">
             {primary.metadata.label}
           </h1>
           {primary.metadata.description !== undefined && (
-            <p className="mt-1 text-sm text-slate-400">{primary.metadata.description}</p>
+            <p className="mt-1 text-sm text-zinc-500">{primary.metadata.description}</p>
           )}
         </div>
       </header>
