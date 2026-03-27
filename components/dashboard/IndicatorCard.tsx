@@ -32,25 +32,27 @@ export function IndicatorCard({ series }: Props) {
       : null
 
   const positive = delta === null || delta >= 0
-  const color = positive ? '#22c55e' : '#ef4444'
+  const color = positive ? '#34d399' : '#f87171'
 
   return (
     <a
       href={`/series/${metadata.id}`}
-      className="group flex flex-col gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      className="glass-panel group flex flex-col gap-3 rounded-xl p-4 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className="truncate text-xs font-medium uppercase tracking-wide text-zinc-400">
+          <p className="truncate text-xs font-medium uppercase tracking-wide text-slate-500">
             {metadata.category}
           </p>
-          <p className="truncate text-sm font-semibold text-zinc-900">{metadata.label}</p>
+          <p className="truncate text-sm font-semibold text-slate-100">{metadata.label}</p>
         </div>
         {delta !== null && (
           <span
-            className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${
-              positive ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
+            className={`shrink-0 rounded-full border px-2 py-0.5 text-xs font-medium ${
+              positive
+                ? 'border-emerald-400/30 bg-emerald-400/15 text-emerald-400'
+                : 'border-red-400/30 bg-red-400/15 text-red-400'
             }`}
           >
             {positive && delta > 0 ? '+' : ''}
@@ -68,13 +70,13 @@ export function IndicatorCard({ series }: Props) {
 
       {/* Value + date */}
       <div className="flex items-end justify-between">
-        <p className="tabular-nums text-2xl font-bold text-zinc-900">
+        <p className="tabular-nums text-2xl font-bold text-white">
           {formatValue(lastValue, metadata.unit)}
         </p>
-        <p className="text-xs text-zinc-400">{metadata.lastDate}</p>
+        <p className="text-xs text-slate-500">{metadata.lastDate}</p>
       </div>
 
-      <p className="text-xs text-zinc-500">{metadata.unit}</p>
+      <p className="text-xs text-slate-500">{metadata.unit}</p>
     </a>
   )
 }

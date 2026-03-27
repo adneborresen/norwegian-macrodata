@@ -22,17 +22,17 @@ export default async function SeriesExplorerPage() {
   }))
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <header className="sticky top-0 z-10 border-b border-zinc-200/50 bg-white/70 backdrop-blur-md">
+    <div className="min-h-screen">
+      <header className="glass-panel sticky top-0 z-10">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <a href="/" className="text-sm text-zinc-400 hover:text-zinc-600">
+            <a href="/" className="text-sm text-slate-400 hover:text-slate-200">
               {nav('backToDashboard')}
             </a>
             <LanguageToggle locale={locale} />
           </div>
-          <h1 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900">{t('title')}</h1>
-          <p className="mt-1 text-sm text-zinc-500">{t('subtitle')}</p>
+          <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-100">{t('title')}</h1>
+          <p className="mt-1 text-sm text-slate-400">{t('subtitle')}</p>
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">

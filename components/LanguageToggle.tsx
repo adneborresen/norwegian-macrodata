@@ -14,7 +14,7 @@ export function LanguageToggle({ locale }: { locale: string }) {
   return (
     <button
       onClick={toggle}
-      className="rounded-md border border-zinc-200 px-2.5 py-1 text-xs font-medium text-zinc-600 transition-colors hover:bg-zinc-50"
+      className="glass-button rounded-full px-3 py-1 text-xs font-medium"
       aria-label={locale === 'en' ? 'Switch to Norwegian' : 'Bytt til engelsk'}
     >
       {locale === 'en' ? 'NO' : 'EN'}
