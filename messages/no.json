@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "dashboard": "Dashbord",
+    "allSeries": "Alle serier →",
+    "backToDashboard": "← Dashbord",
+    "backToAllSeries": "← Alle serier"
+  },
+  "dashboard": {
+    "title": "Norsk makro",
+    "subtitle": "Viktige økonomiske nøkkeltall for Norge"
+  },
+  "explorer": {
+    "title": "Alle serier",
+    "subtitle": "Utforsk tilgjengelige økonomiske indikatorer",
+    "searchPlaceholder": "Søk i serier…",
+    "noResults": "Ingen serier matcher søket ditt."
+  },
+  "detail": {
+    "source": "Kilde",
+    "frequency": "Frekvens",
+    "updated": "Oppdatert",
+    "comparingWith": "Sammenlignet med",
+    "downloadCsv": "↓ CSV",
+    "compareWith": "Sammenlign med…"
+  },
+  "transforms": {
+    "raw": "Rådata",
+    "yoy": "ÅoÅ %",
+    "mom": "MoM %"
+  },
+  "categories": {
+    "all": "Alle",
+    "growth": "Vekst",
+    "labor": "Arbeid",
+    "monetary": "Pengepolitikk",
+    "prices": "Priser",
+    "external": "Utenrikshandel"
+  },
+  "sources": {
+    "ssb": "Statistisk sentralbyrå (SSB)",
+    "norges-bank": "Norges Bank"
+  }
+}

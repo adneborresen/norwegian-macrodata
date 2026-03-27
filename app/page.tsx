@@ -1,3 +1,6 @@
+import { getLocale, getTranslations } from 'next-intl/server'
+
+import { LanguageToggle } from '@/components/LanguageToggle'
 import { DashboardGrid } from '@/components/dashboard/DashboardGrid'
 import { fetchNorgesBankSeries } from '@/lib/norges-bank/client'
 import { dashboardSeriesIds, seriesRegistry } from '@/lib/series-registry'
@@ -12,7 +15,7 @@ async function fetchDashboardSeries(): Promise<TimeSeries[]> {
       return config.source === 'norges-bank'
         ? fetchNorgesBankSeries(config)
         : fetchSsbSeries(config)
-    })
+    }),
   )
 
   return results
@@ -21,27 +24,29 @@ async function fetchDashboardSeries(): Promise<TimeSeries[]> {
 }
 
 export default async function DashboardPage() {
-  const series = await fetchDashboardSeries()
+  const [series, t, locale] = await Promise.all([
+    fetchDashboardSeries(),
+    getTranslations('dashboard'),
+    getLocale(),
+  ])
+
+  const nav = await getTranslations('nav')
 
   return (
     <div className="min-h-screen bg-zinc-50">
       <header className="border-b border-zinc-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="flex items-baseline justify-between">
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-zinc-900">
-                Norwegian Macro
-              </h1>
-              <p className="mt-1 text-sm text-zinc-500">
-                Key economic indicators for Norway
-              </p>
+              <h1 className="text-2xl font-bold tracking-tight text-zinc-900">{t('title')}</h1>
+              <p className="mt-1 text-sm text-zinc-500">{t('subtitle')}</p>
             </div>
-            <a
-              href="/series"
-              className="text-sm font-medium text-blue-600 hover:text-blue-800"
-            >
-              All series →
-            </a>
+            <div className="flex items-center gap-3">
+              <a href="/series" className="text-sm font-medium text-blue-600 hover:text-blue-800">
+                {nav('allSeries')}
+              </a>
+              <LanguageToggle locale={locale} />
+            </div>
           </div>
         </div>
       </header>

@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "allSeries": "All series →",
+    "backToDashboard": "← Dashboard",
+    "backToAllSeries": "← All series"
+  },
+  "dashboard": {
+    "title": "Norwegian Macro",
+    "subtitle": "Key economic indicators for Norway"
+  },
+  "explorer": {
+    "title": "All Series",
+    "subtitle": "Browse all available economic indicators",
+    "searchPlaceholder": "Search series…",
+    "noResults": "No series match your search."
+  },
+  "detail": {
+    "source": "Source",
+    "frequency": "Frequency",
+    "updated": "Updated",
+    "comparingWith": "Comparing with",
+    "downloadCsv": "↓ CSV",
+    "compareWith": "Compare with…"
+  },
+  "transforms": {
+    "raw": "Raw",
+    "yoy": "YoY %",
+    "mom": "MoM %"
+  },
+  "categories": {
+    "all": "All",
+    "growth": "Growth",
+    "labor": "Labor",
+    "monetary": "Monetary",
+    "prices": "Prices",
+    "external": "External"
+  },
+  "sources": {
+    "ssb": "Statistics Norway (SSB)",
+    "norges-bank": "Norges Bank"
+  }
+}

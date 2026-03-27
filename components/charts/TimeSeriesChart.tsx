@@ -2,6 +2,7 @@
 
 import {
   CartesianGrid,
+  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -12,16 +13,45 @@ import {
 
 import type { DataPoint } from '@/lib/types'
 
+// Merge primary + optional comparison into a single flat array for Recharts.
+interface MergedPoint {
+  date: string
+  primary: number | null
+  compare: number | null
+}
+
+function mergeData(primary: DataPoint[], compare: DataPoint[] | undefined): MergedPoint[] {
+  const compareMap = new Map(compare?.map((p) => [p.date, p.value]))
+  return primary.map((p) => ({
+    date: p.date,
+    primary: p.value,
+    compare: compare !== undefined ? (compareMap.get(p.date) ?? null) : null,
+  }))
+}
+
 interface Props {
   data: DataPoint[]
   unit?: string
   color?: string
+  compareData?: DataPoint[]
+  compareLabel?: string
+  compareColor?: string
 }
 
-export function TimeSeriesChart({ data, unit, color = '#3b82f6' }: Props) {
+export function TimeSeriesChart({
+  data,
+  unit,
+  color = '#3b82f6',
+  compareData,
+  compareLabel,
+  compareColor = '#f59e0b',
+}: Props) {
+  const merged = mergeData(data, compareData)
+  const hasCompare = compareData !== undefined
+
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <LineChart data={data} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
+      <LineChart data={merged} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
         <XAxis
           dataKey="date"
@@ -44,15 +74,29 @@ export function TimeSeriesChart({ data, unit, color = '#3b82f6' }: Props) {
             unit ?? '',
           ]}
         />
+        {hasCompare && <Legend wrapperStyle={{ fontSize: 12 }} />}
         <Line
           type="monotone"
-          dataKey="value"
+          dataKey="primary"
+          {...(hasCompare ? { name: 'Primary' } : {})}
           stroke={color}
           strokeWidth={2}
           dot={false}
           isAnimationActive={false}
           connectNulls={false}
         />
+        {hasCompare && (
+          <Line
+            type="monotone"
+            dataKey="compare"
+            name={compareLabel ?? 'Comparison'}
+            stroke={compareColor}
+            strokeWidth={2}
+            dot={false}
+            isAnimationActive={false}
+            connectNulls={false}
+          />
+        )}
       </LineChart>
     </ResponsiveContainer>
   )
