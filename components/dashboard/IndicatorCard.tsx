@@ -37,7 +37,7 @@ export function IndicatorCard({ series }: Props) {
   return (
     <a
       href={`/series/${metadata.id}`}
-      className="group flex flex-col gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition-shadow hover:shadow-md"
+      className="group flex flex-col gap-3 rounded-xl border border-zinc-200 bg-white p-4 transition-all duration-300 hover:scale-105 hover:shadow-xl"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
