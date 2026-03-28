@@ -7,7 +7,7 @@ interface Props {
 export function ChartContainer({ children, loading = false, error }: Props) {
   if (loading) {
     return (
-      <div className="flex h-full min-h-[56px] items-center justify-center text-sm text-zinc-400">
+      <div className="flex h-full min-h-[56px] items-center justify-center text-sm text-text-muted">
         Loading…
       </div>
     )

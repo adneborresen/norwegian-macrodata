@@ -43,13 +43,15 @@ export function DateRangeControl() {
   }, [from])
 
   return (
-    <div className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white p-1">
+    <div className="flex items-center gap-1 rounded-lg border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-1">
       {RANGES.map(({ label, years }) => (
         <button
           key={label}
           onClick={() => setFrom(fromDateForYears(years))}
           className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
-            active === label ? 'bg-zinc-900 text-white' : 'text-zinc-600 hover:bg-zinc-100'
+            active === label
+              ? 'glass-button-active'
+              : 'text-text-muted hover:bg-[rgba(255,255,255,0.06)]'
           }`}
         >
           {label}

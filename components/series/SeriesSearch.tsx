@@ -27,7 +27,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
           placeholder="Search series…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="h-9 w-56 rounded-lg border border-zinc-200 bg-white px-3 text-sm placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="glass-input h-9 w-56 px-3 text-sm"
         />
         <div className="flex flex-wrap gap-1">
           {CATEGORIES.map((cat) => (
@@ -35,9 +35,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
               key={cat}
               onClick={() => setCategory(cat)}
               className={`rounded-full px-3 py-1 text-xs font-medium capitalize transition-colors ${
-                category === cat
-                  ? 'bg-zinc-900 text-white'
-                  : 'border border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-50'
+                category === cat ? 'glass-button-active' : 'glass-button'
               }`}
             >
               {cat}
@@ -53,7 +51,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="py-12 text-center text-sm text-zinc-400">No series match your search.</p>
+        <p className="py-12 text-center text-sm text-text-muted">No series match your search.</p>
       )}
     </div>
   )

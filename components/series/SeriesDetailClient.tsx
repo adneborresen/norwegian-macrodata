@@ -85,15 +85,15 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
         <DateRangeControl />
 
         {/* Transform selector */}
-        <div className="flex items-center gap-1 rounded-lg border border-zinc-200 bg-white p-1">
+        <div className="flex items-center gap-1 rounded-lg border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-1">
           {TRANSFORMS.map(({ value, label }) => (
             <button
               key={value}
               onClick={() => setParam('transform', value === 'raw' ? undefined : value)}
               className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
                 transform === value
-                  ? 'bg-zinc-900 text-white'
-                  : 'text-zinc-600 hover:bg-zinc-100'
+                  ? 'glass-button-active'
+                  : 'text-text-muted hover:bg-[rgba(255,255,255,0.06)]'
               }`}
             >
               {label}
@@ -105,7 +105,7 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
         <select
           value={compareId}
           onChange={(e) => setParam('compare', e.target.value || undefined)}
-          className="h-9 rounded-lg border border-zinc-200 bg-white px-2 text-sm text-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="glass-input h-9 px-2 text-sm"
         >
           <option value="">Compare with…</option>
           {allSeries
@@ -120,14 +120,14 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
         {/* CSV download */}
         <button
           onClick={() => downloadCsv(primaryData, `${primary.metadata.id}.csv`)}
-          className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-50"
+          className="glass-button px-3 py-1.5 text-sm font-medium"
         >
           ↓ CSV
         </button>
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-zinc-200 bg-white p-4 sm:p-6">
+      <div className="glass-panel glass-specular rounded-xl p-4 sm:p-6">
         <TimeSeriesChart
           data={primaryData}
           unit={primary.metadata.unit}
@@ -138,7 +138,7 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
       </div>
 
       {/* Metadata footer */}
-      <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-zinc-400">
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-text-muted">
         <span>Source: {SOURCE_LABELS[primary.metadata.source] ?? primary.metadata.source}</span>
         <span>Frequency: {primary.metadata.frequency}</span>
         {primary.metadata.updatedAt !== undefined && (

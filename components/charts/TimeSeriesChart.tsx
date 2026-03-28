@@ -41,10 +41,10 @@ interface Props {
 export function TimeSeriesChart({
   data,
   unit,
-  color = '#3b82f6',
+  color = '#2dd4bf',
   compareData,
   compareLabel,
-  compareColor = '#f59e0b',
+  compareColor = '#fbbf24',
 }: Props) {
   const merged = mergeData(data, compareData)
   const hasCompare = compareData !== undefined
@@ -52,29 +52,37 @@ export function TimeSeriesChart({
   return (
     <ResponsiveContainer width="100%" height={320}>
       <LineChart data={merged} margin={{ top: 8, right: 16, left: 0, bottom: 8 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
         <XAxis
           dataKey="date"
-          tick={{ fontSize: 11, fill: '#6b7280' }}
+          tick={{ fontSize: 11, fill: '#a1a1aa' }}
           tickLine={false}
           axisLine={false}
           interval="preserveStartEnd"
         />
         <YAxis
-          tick={{ fontSize: 11, fill: '#6b7280' }}
+          tick={{ fontSize: 11, fill: '#a1a1aa' }}
           tickLine={false}
           axisLine={false}
           width={52}
           tickFormatter={(v: number) => (unit?.includes('%') ? `${v}%` : String(v))}
         />
         <Tooltip
-          contentStyle={{ fontSize: 12, borderRadius: 6, border: '1px solid #e5e7eb' }}
+          contentStyle={{
+            fontSize: 12,
+            borderRadius: 8,
+            border: '1px solid rgba(255,255,255,0.07)',
+            background: 'rgba(0,0,0,0.75)',
+            backdropFilter: 'blur(8px)',
+            color: '#f5f5f5',
+          }}
+          labelStyle={{ color: '#a1a1aa' }}
           formatter={(value: number | string | readonly (string | number)[] | undefined) => [
             typeof value === 'number' ? value.toFixed(2) : '—',
             unit ?? '',
           ]}
         />
-        {hasCompare && <Legend wrapperStyle={{ fontSize: 12 }} />}
+        {hasCompare && <Legend wrapperStyle={{ fontSize: 12, color: '#a1a1aa' }} />}
         <Line
           type="monotone"
           dataKey="primary"

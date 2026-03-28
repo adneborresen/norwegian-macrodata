@@ -35,7 +35,14 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+          <div className="ambient-orb ambient-orb-1" />
+          <div className="ambient-orb ambient-orb-2" />
+          <div className="ambient-orb ambient-orb-3" />
+        </div>
+        <div className="relative z-10 flex min-h-full flex-col">
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        </div>
       </body>
     </html>
   )
