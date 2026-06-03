@@ -74,6 +74,21 @@ export const seriesRegistry: Record<string, SeriesConfig> = {
     description: 'Consumer Price Index 12-month rate (2025=100 base)',
   },
 
+  'cpi-index': {
+    source: 'ssb',
+    id: 'cpi-index',
+    label: 'CPI (Index)',
+    unit: 'Index (2025=100)',
+    frequency: 'monthly',
+    category: 'prices',
+    tableId: '14700',
+    timeDimId: 'Tid',
+    contentsDimId: 'ContentsCode',
+    valueCode: 'KpiIndMnd',
+    fixedDims: { VareTjenesteGrp: '00' }, // total CPI
+    description: 'Consumer Price Index (2025=100 base)',
+  },
+
   'gdp-growth': {
     source: 'ssb',
     id: 'gdp-growth',
@@ -87,6 +102,21 @@ export const seriesRegistry: Record<string, SeriesConfig> = {
     valueCode: 'Volum', // change in volume from same period previous year (%)
     fixedDims: { Makrost: 'bnpb.nr23_9fn' }, // GDP Mainland Norway, market values
     description: 'Gross domestic product Mainland Norway, volume change YoY',
+  },
+
+  'gdp-level': {
+    source: 'ssb',
+    id: 'gdp-level',
+    label: 'GDP (Level)',
+    unit: 'NOK million (2023-prices, seasonally adj.)',
+    frequency: 'quarterly',
+    category: 'growth',
+    tableId: '09190',
+    timeDimId: 'Tid',
+    contentsDimId: 'ContentsCode',
+    valueCode: 'FastePriserSesJust',
+    fixedDims: { Makrost: 'bnpb.nr23_9fn' }, // GDP Mainland Norway, market values
+    description: 'Gross domestic product Mainland Norway, constant 2023-prices, seasonally adjusted',
   },
 
   unemployment: {
@@ -121,6 +151,21 @@ export const seriesRegistry: Record<string, SeriesConfig> = {
     valueCode: 'LonnProsent', // wages and salaries, change from previous year (%)
     fixedDims: { NACE: 'nr23_6' }, // total industry
     description: 'Wages and salaries, annual change from previous year, total industry',
+  },
+
+  'wage-level': {
+    source: 'ssb',
+    id: 'wage-level',
+    label: 'Wages (Level)',
+    unit: 'NOK million',
+    frequency: 'annual',
+    category: 'labor',
+    tableId: '09174',
+    timeDimId: 'Tid',
+    contentsDimId: 'ContentsCode',
+    valueCode: 'Lonn',
+    fixedDims: { NACE: 'nr23_6' }, // total industry
+    description: 'Wages and salaries, total industry',
   },
 
   'house-prices': {
