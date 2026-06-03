@@ -1,3 +1,7 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
+
 export interface SeriesItem {
   id: string
   label: string
@@ -7,19 +11,8 @@ export interface SeriesItem {
   source: string
 }
 
-const FREQ_LABELS: Record<string, string> = {
-  daily: 'Daily',
-  monthly: 'Monthly',
-  quarterly: 'Quarterly',
-  annual: 'Annual',
-}
-
-const SOURCE_LABELS: Record<string, string> = {
-  ssb: 'SSB',
-  'norges-bank': 'Norges Bank',
-}
-
 export function SeriesCard({ series }: { series: SeriesItem }) {
+  const t = useTranslations()
   return (
     <a
       href={`/series/${series.id}`}
@@ -34,10 +27,10 @@ export function SeriesCard({ series }: { series: SeriesItem }) {
       <p className="text-xs text-text-muted">{series.unit}</p>
       <div className="mt-auto flex items-center justify-between pt-1">
         <span className="text-xs text-text-muted">
-          {FREQ_LABELS[series.frequency] ?? series.frequency}
+          {t(`frequencies.${series.frequency}`, { fallback: series.frequency })}
         </span>
         <span className="text-xs text-text-muted">
-          {SOURCE_LABELS[series.source] ?? series.source}
+          {t(`sources.${series.source}`, { fallback: series.source })}
         </span>
       </div>
     </a>

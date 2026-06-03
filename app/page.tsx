@@ -1,4 +1,5 @@
 import { getLocale, getTranslations } from 'next-intl/server'
+import Link from 'next/link'
 
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { DashboardGrid } from '@/components/dashboard/DashboardGrid'
@@ -42,9 +43,9 @@ export default async function DashboardPage() {
               <p className="mt-1 text-sm text-text-muted">{t('subtitle')}</p>
             </div>
             <div className="flex items-center gap-3">
-              <a href="/series" className="text-sm font-medium text-accent hover:text-teal-400">
+              <Link href="/series" className="text-sm font-medium text-accent hover:text-teal-400">
                 {nav('allSeries')}
-              </a>
+              </Link>
               <LanguageToggle locale={locale} />
             </div>
           </div>

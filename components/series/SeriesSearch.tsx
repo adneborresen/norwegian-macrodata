@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import { SeriesCard, type SeriesItem } from './SeriesCard'
@@ -7,6 +8,7 @@ import { SeriesCard, type SeriesItem } from './SeriesCard'
 const CATEGORIES = ['all', 'growth', 'labor', 'monetary', 'prices', 'external'] as const
 
 export function SeriesSearch({ series }: { series: SeriesItem[] }) {
+  const t = useTranslations()
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string>('all')
 
@@ -24,7 +26,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
       <div className="flex flex-wrap items-center gap-3">
         <input
           type="search"
-          placeholder="Search series…"
+          placeholder={t('explorer.searchPlaceholder')}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="glass-input h-9 w-56 px-3 text-sm"
@@ -38,7 +40,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
                 category === cat ? 'glass-button-active' : 'glass-button'
               }`}
             >
-              {cat}
+              {t(`categories.${cat}`)}
             </button>
           ))}
         </div>
@@ -51,7 +53,7 @@ export function SeriesSearch({ series }: { series: SeriesItem[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="py-12 text-center text-sm text-text-muted">No series match your search.</p>
+        <p className="py-12 text-center text-sm text-text-muted">{t('explorer.noResults')}</p>
       )}
     </div>
   )

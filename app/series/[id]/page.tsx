@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
+import Link from 'next/link'
 
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { SeriesDetailClient, type SeriesOption } from '@/components/series/SeriesDetailClient'
@@ -49,9 +50,9 @@ export default async function SeriesDetailPage({
       <header className="glass-elevated sticky top-0 z-10">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <a href="/series" className="text-sm text-text-muted hover:text-text-primary">
+            <Link href="/series" className="text-sm text-text-muted hover:text-text-primary">
               {nav('backToAllSeries')}
-            </a>
+            </Link>
             <LanguageToggle locale={locale} />
           </div>
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-text-primary">

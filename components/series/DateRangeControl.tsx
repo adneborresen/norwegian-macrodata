@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 
@@ -18,6 +19,7 @@ function fromDateForYears(years: number | null): string | undefined {
 }
 
 export function DateRangeControl() {
+  const t = useTranslations('ranges')
   const router = useRouter()
   const sp = useSearchParams()
   const from = sp.get('from') ?? undefined
@@ -54,7 +56,7 @@ export function DateRangeControl() {
               : 'text-text-muted hover:bg-[rgba(255,255,255,0.06)]'
           }`}
         >
-          {label}
+          {t(label)}
         </button>
       ))}
     </div>

@@ -1,4 +1,5 @@
 import { getLocale, getTranslations } from 'next-intl/server'
+import Link from 'next/link'
 
 import { LanguageToggle } from '@/components/LanguageToggle'
 import type { SeriesItem } from '@/components/series/SeriesCard'
@@ -26,9 +27,9 @@ export default async function SeriesExplorerPage() {
       <header className="glass-elevated sticky top-0 z-10">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            <a href="/" className="text-sm text-text-muted hover:text-text-primary">
+            <Link href="/" className="text-sm text-text-muted hover:text-text-primary">
               {nav('backToDashboard')}
-            </a>
+            </Link>
             <LanguageToggle locale={locale} />
           </div>
           <h1 className="mt-2 text-2xl font-bold tracking-tight text-text-primary">{t('title')}</h1>

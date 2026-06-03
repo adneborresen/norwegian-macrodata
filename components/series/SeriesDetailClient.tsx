@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 
@@ -20,16 +21,7 @@ interface Props {
   allSeries: SeriesOption[]
 }
 
-const TRANSFORMS: { value: Transform; label: string }[] = [
-  { value: 'raw', label: 'Raw' },
-  { value: 'yoy', label: 'YoY %' },
-  { value: 'mom', label: 'MoM %' },
-]
-
-const SOURCE_LABELS: Record<string, string> = {
-  ssb: 'Statistics Norway (SSB)',
-  'norges-bank': 'Norges Bank',
-}
+const TRANSFORM_KEYS = ['raw', 'yoy', 'mom'] as const
 
 function downloadCsv(
   data: Array<{ date: string; value: number | null }>,
@@ -46,6 +38,7 @@ function downloadCsv(
 }
 
 export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
+  const t = useTranslations()
   const router = useRouter()
   const sp = useSearchParams()
 
@@ -86,17 +79,17 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
 
         {/* Transform selector */}
         <div className="flex items-center gap-1 rounded-lg border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-1">
-          {TRANSFORMS.map(({ value, label }) => (
+          {TRANSFORM_KEYS.map((key) => (
             <button
-              key={value}
-              onClick={() => setParam('transform', value === 'raw' ? undefined : value)}
+              key={key}
+              onClick={() => setParam('transform', key === 'raw' ? undefined : key)}
               className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
-                transform === value
+                transform === key
                   ? 'glass-button-active'
                   : 'text-text-muted hover:bg-[rgba(255,255,255,0.06)]'
               }`}
             >
-              {label}
+              {t(`transforms.${key}`)}
             </button>
           ))}
         </div>
@@ -107,7 +100,7 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
           onChange={(e) => setParam('compare', e.target.value || undefined)}
           className="glass-input h-9 px-2 text-sm"
         >
-          <option value="">Compare with…</option>
+          <option value="">{t('detail.compareWith')}</option>
           {allSeries
             .filter((s) => s.id !== primary.metadata.id)
             .map((s) => (
@@ -122,7 +115,7 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
           onClick={() => downloadCsv(primaryData, `${primary.metadata.id}.csv`)}
           className="glass-button px-3 py-1.5 text-sm font-medium"
         >
-          ↓ CSV
+          {t('detail.downloadCsv')}
         </button>
       </div>
 
@@ -139,15 +132,15 @@ export function SeriesDetailClient({ primary, comparison, allSeries }: Props) {
 
       {/* Metadata footer */}
       <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-text-muted">
-        <span>Source: {SOURCE_LABELS[primary.metadata.source] ?? primary.metadata.source}</span>
-        <span>Frequency: {primary.metadata.frequency}</span>
+        <span>{t('detail.source')}: {t(`sources.${primary.metadata.source}`, { fallback: primary.metadata.source })}</span>
+        <span>{t('detail.frequency')}: {t(`frequencies.${primary.metadata.frequency}`, { fallback: primary.metadata.frequency })}</span>
         {primary.metadata.updatedAt !== undefined && (
-          <span>Updated: {primary.metadata.updatedAt.slice(0, 10)}</span>
+          <span>{t('detail.updated')}: {primary.metadata.updatedAt.slice(0, 10)}</span>
         )}
         {comparison !== undefined && (
           <span>
-            Comparing with: {comparison.metadata.label} (
-            {SOURCE_LABELS[comparison.metadata.source] ?? comparison.metadata.source})
+            {t('detail.comparingWith')}: {comparison.metadata.label} (
+            {t(`sources.${comparison.metadata.source}`, { fallback: comparison.metadata.source })})
           </span>
         )}
       </div>

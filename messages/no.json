@@ -39,5 +39,17 @@
   "sources": {
     "ssb": "Statistisk sentralbyrå (SSB)",
     "norges-bank": "Norges Bank"
+  },
+  "frequencies": {
+    "daily": "Daglig",
+    "monthly": "Månedlig",
+    "quarterly": "Kvartalsvis",
+    "annual": "Årlig"
+  },
+  "ranges": {
+    "1Y": "1Å",
+    "5Y": "5Å",
+    "10Y": "10Å",
+    "Max": "Maks"
   }
 }
