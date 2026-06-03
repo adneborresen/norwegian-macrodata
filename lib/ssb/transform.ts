@@ -43,7 +43,7 @@ export function transformJsonStat2(raw: JsonStat2Dataset, config: TransformConfi
       normalizedDate = `${y}-${m}-01`
     } else if (date.includes('K')) {
       const [y, q] = date.split('K')
-      const m = String(parseInt(q) * 3 - 2).padStart(2, '0')
+      const m = String(parseInt(q as string) * 3 - 2).padStart(2, '0')
       normalizedDate = `${y}-${m}-01`
     } else if (/^\d{4}$/.test(date)) {
       normalizedDate = `${date}-01-01`
