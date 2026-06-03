@@ -30,12 +30,12 @@ describe('transformJsonStat2 (CPI index)', () => {
     expect(result.length).toBe(314) // 2000M01 – 2026M02
   })
 
-  it('first date is 2000M01', () => {
-    expect(result[0]!.date).toBe('2000M01')
+  it('first date is 2000-01-01', () => {
+    expect(result[0]!.date).toBe('2000-01-01')
   })
 
-  it('last date is 2026M02', () => {
-    expect(result[result.length - 1]!.date).toBe('2026M02')
+  it('last date is 2026-02-01', () => {
+    expect(result[result.length - 1]!.date).toBe('2026-02-01')
   })
 
   it('output is sorted by date ascending', () => {

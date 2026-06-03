@@ -21,11 +21,21 @@ interface MergedPoint {
 }
 
 function mergeData(primary: DataPoint[], compare: DataPoint[] | undefined): MergedPoint[] {
-  const compareMap = new Map(compare?.map((p) => [p.date, p.value]))
-  return primary.map((p) => ({
-    date: p.date,
-    primary: p.value,
-    compare: compare !== undefined ? (compareMap.get(p.date) ?? null) : null,
+  if (!compare) {
+    return primary.map((p) => ({ date: p.date, primary: p.value, compare: null }))
+  }
+
+  const allDates = Array.from(
+    new Set([...primary.map((p) => p.date), ...compare.map((p) => p.date)]),
+  ).sort()
+
+  const primaryMap = new Map(primary.map((p) => [p.date, p.value]))
+  const compareMap = new Map(compare.map((p) => [p.date, p.value]))
+
+  return allDates.map((date) => ({
+    date,
+    primary: primaryMap.get(date) ?? null,
+    compare: compareMap.get(date) ?? null,
   }))
 }
 
@@ -91,7 +101,7 @@ export function TimeSeriesChart({
           strokeWidth={2}
           dot={false}
           isAnimationActive={false}
-          connectNulls={false}
+          connectNulls={true}
         />
         {hasCompare && (
           <Line
@@ -102,7 +112,7 @@ export function TimeSeriesChart({
             strokeWidth={2}
             dot={false}
             isAnimationActive={false}
-            connectNulls={false}
+            connectNulls={true}
           />
         )}
       </LineChart>
